@@ -1,11 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import ItemList from "./../ItemList";
 import ItemInput from "./../ItemInput";
 import CartList from "./../CartList";
 import { dbContext } from "../../contexts/DbContextProvider";
+import Search from "./../Search";
 
 const Shop = () => {
-  const { cartItems, saveOrder, user } = useContext(dbContext);
+  const { cartItems, saveOrder, user, items, getItems } = useContext(dbContext);
+  useEffect(() => {
+    getItems();
+  }, []);
+  let [filteredItems, setFilteredItems] = useState(items);
+  const handleSearchChange = (e) => {
+    let searchValue = e.target.value;
+    let newItems = items.filter((item) => {
+      if (item.title.toLowerCase().includes(searchValue.toLowerCase())) {
+        return item;
+      }
+    });
+    setFilteredItems([...newItems]);
+  };
   let button;
   if (cartItems.length > 0) {
     if (user) {
@@ -14,15 +28,20 @@ const Shop = () => {
       button = <button disabled>Logga in först</button>;
     }
   } else {
-    button = <button disabled>Lägg beställning</button>;
+    button = (
+      <button disabled hidden>
+        Lägg beställning
+      </button>
+    );
   }
   return (
-    <React.Fragment>
-      <ItemList />
+    <>
+      <Search handleSearchChange={handleSearchChange} />
+      <ItemList filteredItems={filteredItems} />
       <ItemInput />
       <CartList />
       {button}
-    </React.Fragment>
+    </>
   );
 };
 export default Shop;

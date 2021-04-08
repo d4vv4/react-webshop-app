@@ -98,6 +98,7 @@ const DbContextProvider = (props) => {
         saveUser,
         saveOrder,
         setUser,
+        setItems,
       }}
     >
       {props.children}
