@@ -21,7 +21,6 @@ const Shop = () => {
     setFilteredItems([...newItems]);
   };
   let button;
-  //TEST
   if (cartItems.length > 0) {
     if (user) {
       button = <button onClick={saveOrder}>Lägg beställning</button>;
