@@ -5,13 +5,13 @@ const CompletedOrder = () => {
   const { getOrder, saveOrder, resetCart } = useContext(dbContext);
   const [order, setOrder] = useState({});
 
-  useEffect(() => {
-    async function random() {
-      await saveOrder();
-      setOrder(await getOrder());
-    }
-    random();
+  async function onStart() {
+    await saveOrder();
+    setOrder(await getOrder());
     resetCart();
+  }
+  useEffect(() => {
+    onStart();
   }, []);
   if (!order.items) return null;
   console.log(order.items[0]);
@@ -25,7 +25,7 @@ const CompletedOrder = () => {
         <h1>Tack för din beställning</h1>
         <h4>Du beställde:</h4>
         {list.map((element) => {
-          return <p>{element}</p>;
+          return <p key={element}>{element}</p>;
         })}
       </div>
     </React.Fragment>
