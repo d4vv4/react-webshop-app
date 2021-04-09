@@ -11,7 +11,9 @@ const ItemList = ({ filteredItems }) => {
   });
   return (
     <>
-      <ul>{list}</ul>
+      <div className="row align-items-center">
+        <ul className="col d-flex flex-wrap">{list}</ul>
+      </div>
     </>
   );
 };

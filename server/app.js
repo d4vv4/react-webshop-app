@@ -34,6 +34,11 @@ app.get("/items", (req, res) => {
     res.send(result);
   });
 });
+app.get("/orders", (req, res) => {
+  Order.find({}).then((result) => {
+    res.send(result);
+  });
+});
 
 app.get("/users", (req, res) => {
   User.find({}).then((result) => {

@@ -7,11 +7,21 @@ const Item = ({ item }) => {
   return (
     <>
       <li>
-        <p>{item.title}</p>
-        <button onClick={() => addToCart(item)}>Add to cart</button>
-        <NavLink to={{ pathname: "/ItemDetails", data: { item: item } }}>
-          Details
-        </NavLink>
+        <div className="card m-1">
+          <div className="card-body">
+            <h5 className="card-title">{item.title}</h5>
+            <h6 className="card-subtitle mb-4 text-muted">{item.price} kr</h6>
+            <button className="btn btn-success" onClick={() => addToCart(item)}>
+              Lägg i varukorg
+            </button>
+            <NavLink
+              className="btn btn-info ml-1"
+              to={{ pathname: "/itemDetails", data: { item: item } }}
+            >
+              Detaljer
+            </NavLink>
+          </div>
+        </div>
       </li>
     </>
   );

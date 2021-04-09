@@ -6,8 +6,15 @@ const CartItem = ({ item }) => {
   return (
     <>
       <li>
-        <p>{item.title}</p>
-        <button onClick={() => removeFromCart(item)}>Remove</button>
+        <div className="d-flex">
+          <p className="mr-2 mt-2">{item.title}</p>
+          <button
+            className="btn btn-outline-danger mb-2"
+            onClick={() => removeFromCart(item)}
+          >
+            Ta bort
+          </button>
+        </div>
       </li>
     </>
   );

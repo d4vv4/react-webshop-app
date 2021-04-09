@@ -7,27 +7,32 @@ const Navigation = () => {
 
   let nav = "";
   if (!user) {
-    nav = <NavLink to="/login">Logga in</NavLink>;
+    nav = (
+      <NavLink className="nav-link" to="/login">
+        Logga in
+      </NavLink>
+    );
   } else {
     nav = (
-      <NavLink onClick={() => setUser(undefined)} to="/">
+      <a href="#" className="nav-link" onClick={() => setUser(undefined)}>
         Logga ut
-      </NavLink>
+      </a>
     );
   }
 
   return (
     <React.Fragment>
-      <nav>
-        <ul>
-          <li>
-            <NavLink to="/">Start</NavLink>
-          </li>
-          <li>{nav}</li>
-          <li>
-            <NavLink to="/shop">Shop</NavLink>
-          </li>
-        </ul>
+      <nav className="navbar navbar-light navbar-expand-lg bg-light mb-5">
+        <div className="container">
+          <ul className="navbar-nav">
+            <li className="nav-item">{nav}</li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/shop">
+                Shop
+              </NavLink>
+            </li>
+          </ul>
+        </div>
       </nav>
     </React.Fragment>
   );
