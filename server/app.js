@@ -5,16 +5,16 @@ const mongoose = require("mongoose");
 require("./Item");
 require("./User");
 require("./Order");
-
+require("./Url");
 app.use(cors());
 app.use(express.json());
+var url = require("./Url");
 
 const Item = mongoose.model("item");
 const User = mongoose.model("user");
 const Order = mongoose.model("order");
 
-const mongoUrl =
-  "mongodb+srv://dbuser:fH8OtRyuJRTEiISD@cluster.65ezp.mongodb.net/react-webshop?retryWrites=true&w=majority";
+const mongoUrl = url.urltext();
 
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
